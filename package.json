@@ -2,7 +2,12 @@
   "name": "node-example",
   "version": "0.0.1",
   "dependencies": {
-    "express": "2.5.x"
+    "express": "2.5.x",
+    "coffee-script": "~1.6.1",
+    "ejs": "~0.8.3",
+    "jquery": "~1.8.3",
+    "socket.io": "~0.9.13",
+    "events": "~0.5.0"
   },
   "engines": {
     "node": "0.8.x",
