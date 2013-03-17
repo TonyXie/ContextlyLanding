@@ -11,51 +11,54 @@ logger = new EventEmitter();
 app = express.createServer(express.logger());
 io = socket.listen(app);
 
-names = [];
-messages = [];
+// configuration for heroku, since heroku does not support web sockets
+io.configure(function() {
+  io.set("transports", ["xhr-polling"]);
+  return io.set("polling duration", 10);
+});
 
-app.set('view options', {layout: false});
+names = []
 
-app.get('/', function(request, response) {
+messages = []
+
+app.set("view options", {
+  layout: false
+});
+
+app.get("/", function(request, response) {
   return response.render(__dirname + "/index.ejs", {
     names: names
   });
 });
 
-// link to the public directory
-app.use(express.static(__dirname + '/public'));
+app.use(express["static"](__dirname + "/public"));
 
-io.sockets.on('connection', function(client) {
+io.sockets.on("connection", function(client) {
   console.log("Someone's here...");
-
-  client.on('join', function(nickname) {
-    client.set('nickname', nickname);
+  client.on("join", function(nickname) {
+    client.set("nickname", nickname);
     console.log(nickname + " has joined the room");
     names.push(nickname);
     client.broadcast.emit("new_user", nickname);
     messages.forEach(function(message) {
-      client.emit("message", message);
+      return client.emit("message", message);
     });
-    client.emit("join", names);
+    return client.emit("join", names);
   });
-
-  client.on('chat', function(message) {
+  client.on("chat", function(message) {
     messages.push(message);
-    client.broadcast.emit('message', message);
-    console.log('current list of all messages: ' + messages);    
-  })
-
-   // deal with disconnect
-  client.on('disconnect', function(name) {
-    client.get('nickname', function(err, name) {
-      client.broadcast.emit("remove_chatter", name);
+    client.broadcast.emit("message", message);
+    return console.log("current list of all messages: " + messages);
+  });
+  return client.on("disconnect", function(name) {
+    return client.get("nickname", function(err, name) {
+      return client.broadcast.emit("remove_chatter", name);
     });
   });
-
 });
 
-var port = process.env.PORT || 3000;
+port = process.env.PORT || 3000;
 
 app.listen(port, function() {
-  console.log("Listening on " + port);
+  return console.log("Listening on " + port);
 });
