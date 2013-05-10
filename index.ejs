@@ -1,83 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tony's little node app</title>
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/custom.scss" />
+  <title>Contextly</title>
+  <link rel="stylesheet" href="landing.css">
+  <link rel="stylesheet" href="bootstrap.min.css">
 </head>
 
-<div class="hero-unit span5">
-  <h1 class = "appendTarget">Why hello there</h1>
-  <p>Welcome to my little app...!</p>
-  <ul id = "names_in_room">
-    people in this room... 
-  </ul>
-</div>
-<div class="hero-unit span5">
-  <ul id="messages_list">
-    Messages...
-  </ul>
-  <form action="#", method="#", class="chat">
-      <label for="chat">Chat</label>
-      <input type="text", id="chat_message">
-      <input type="submit", name="Submit", id="message">
-  </form>
-</div>
+<body>
 
-<!-- Scripts -->
-<script src="/socket.io/lib/socket.io.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <div class="container">
 
-<script>
-  // var server = io.connect('http://localhost:3000');
-  var server = io.connect('http://frozen-mountain-4758.herokuapp.com/');
+      <!-- Jumbotron <--></-->
+      <div class="jumbotron">
+        <h1 class="center">Contextly</h1>
+        <p class="lead">Design the web simply. Add css shortcuts to web development.</p>
+        <a class="btn btn-large btn-success" href="#">Add to Chrome<img src="quill.png" ></a>
+      </div>
 
-  // chat message functionality 
-  $("#message").click(function(e) {
-    var message = $("#chat_message").val();
-    $("#chat_message").val('');
-    $('#messages_list').append('<li>' + message + '</li>');
-    console.log(message);
-    server.emit('chat', message);
-    e.preventDefault();
-  });
+      <!-- Example row of columns -->
+      <div class="row-fluid">
+        <div class="span6">
+          <p class="lead"><img src="img/transfer.png">Drag elements and divs</p>
+          <p>Shift + D: make the clicked element draggable. Shift + E: make div draggable.</p>
+        </div>
+        <div class="span6">
+          <p class="lead"><img src="img/settings-3.png">Change font-styles</p>
+          <p>Shift + F: Add Google Web Fonts to the clicked element. Change font size and color.</p>
+        </div>
+        
+      </div>
 
+      <div class="row-fluid">
+        <div class="span6">
+          <p><img src="img/asterisk.png">Wrap a class in div</p>
+          <p>Shift + W: Wrap the clicked element with a specified class.</p>
+        </div>
+        <div class="span6">
+          <p><img src="img/delete.png">Revert Changes</p>
+          <p>Shift + Z: Revert last change.</p>
+        </div>
+      </div>
 
-  // when client connects, prompt for name, and hen send name to server
-  server.on('connect', function(data){
-    nickname = prompt("What is your name");
-    server.emit('join', nickname);
-  });
+      <div class="row-fluid">
+        <div class="span6">
+          <p><img src="img/add.png">Add an element to div</p>
+          <p>Shift + A: Add the clicked element to a specified class.</p>
+        </div>
+        <div class="span6">
+          <p><img src="img/compose-2.png">Change tagName</p>
+          <p>Shift + T: Change the clicked element's tagName.</p>
+        </div>
+      </div>
 
-  //when new user joins the chatroom, append name onto list of users
+      <div class="row-fluid">
+        <div class="span6">
+          <p><img src="img/crop.png">Modify Class</p>
+          <p>Shift + M: Choose a class and modify its background color, height, and width.</p>
+        </div>
+        <div class="span6">
+          <p><img src="img/expand-3.png">Make div resizable</p>
+          <p>Shift + R: Choose a div to make resizable. Drag the div's height and width to your wishes.</p>
+        </div>
+      </div>
 
-  server.on('new_user', function(name) {
-     $('#names_in_room').append('<li id=' + name + '>' + name + '</li>');
-  });
+      <div class="footer">
+        <p>Icons from batch. Tony Xie 2013. If you like Contextly hit me up at @T_Xie or conatact me at txie145@gmail.com</p>
+      </div>
 
-  // display the names of all other users in room
-  server.on('join', function(names) {
-    console.log(names);
-    // alert(nickname);
-    // console.log(names);
-    names.forEach(function(name){
-      $('#names_in_room').append('<li id=' + name + '>' + name + '</li>');
-    });
-  });
+    </div> <!-- /container -->
 
-  // display chat messages in room
-  server.on('message', function(message) {
-    console.log(message);
-    $('#messages_list').append('<li>' + message + '</li>');
-  });
-
- 
-  // remove chatter 
-  server.on('remove_chatter', function(name) {
-    console.log("removed chatter");
-    $('li#'+name).remove();
-  });
-
-</script>
+</body>
 
 </html>

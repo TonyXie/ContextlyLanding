@@ -1,0 +1,45 @@
+#quill {
+  position: absolute;
+  left: 640px;
+  top: 240px;
+}
+
+img {
+  margin-right: 5px;
+}
+
+.jumbotron{
+  height: 218px;
+  margin-top: 5em;
+  border-bottom: 1px solid black;
+  margin-bottom: 2em;
+}
+
+table {
+  width: 500px;
+}
+
+tr {
+  width: 500px;
+}
+
+.jumbotron h1 {
+  font-size: 120px;
+  margin-left: 198px;
+  margin-top: -22px;
+}
+
+.jumbotron p {
+  margin-left: 173px;
+  margin-top: 48px;
+}
+
+.jumbotron a {
+  margin-left: 396px;
+}
+
+.footer {
+  margin-top: 2em;
+  height: 30px;
+  margin-bottom: 1em;
+}
