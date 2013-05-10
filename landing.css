@@ -9,10 +9,11 @@ img {
 }
 
 .jumbotron{
-  height: 218px;
+  height: 312px;
   margin-top: 5em;
   border-bottom: 1px solid black;
   margin-bottom: 2em;
+  text-align: center;
 }
 
 table {
@@ -24,18 +25,16 @@ tr {
 }
 
 .jumbotron h1 {
-  font-size: 120px;
-  margin-left: 198px;
-  margin-top: -22px;
+  font-family: Raleway;
+  font-size: 150px;
 }
 
-.jumbotron p {
-  margin-left: 173px;
-  margin-top: 48px;
+.jumbotron h2 {  
+  margin-top: 84px;
 }
 
 .jumbotron a {
-  margin-left: 396px;
+  margin-top: 44px;
 }
 
 .footer {
