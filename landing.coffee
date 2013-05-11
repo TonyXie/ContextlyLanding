@@ -164,7 +164,4 @@ $(document).ready ->
           flashInOut("draggableFlash")
           $('#absolute').animate {"top": "410px"}, 1500, "linear"
           $('#quill').animate {"top": "410px"}, 1500, "linear", ->
-            $('#quill').animate {"left" : "690px", "top" : "305px"}, 1500          
-
-  
-
+            $('#quill').animate {"left" : "690px", "top" : "305px"}, 1500
