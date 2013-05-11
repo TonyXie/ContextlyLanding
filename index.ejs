@@ -4,23 +4,36 @@
   <title>Contextly</title>
   <link rel="stylesheet" href="landing.css">
   <link rel="stylesheet" href="bootstrap.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
   <link href="http://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
+  <script src="jquery-1.9.1.min.js"></script>
+  <script src="landing.js"></script>
 </head>
 
 <body>
 
     <div class="container">
 
+      <img id="quill" src="img/quill.png" >
+
       <!-- Jumbotron <--></-->
       <div class="jumbotron">
-        <h1 class="center">Contextly</h1>
+        <h3 class="center">Contextly</h3>
         <h2>Add css shortcuts to web development.</h2>
-        <a class="btn btn-large btn-success" href="#">Add to Chrome<img src="quill.png" ></a>
+        <a id="quillButton" class="btn btn-large btn-success" href="#">Add to Chrome</a>
+        <p id="addObject" >Shift + A: Add the clicked element to a specified class.</p>
+      </div>
+
+      <div class="span6" id="absolute">
+          <p class="lead"><img src="img/transfer.png">Drag elements and divs</p>
+          <p>Shift + D: make the clicked element draggable. Shift + E: make div draggable.</p>
       </div>
 
       <!-- Example row of columns -->
       <div class="row-fluid">
-        <div class="span6">
+        <div class="span6" id="opaque">
           <p class="lead"><img src="img/transfer.png">Drag elements and divs</p>
           <p>Shift + D: make the clicked element draggable. Shift + E: make div draggable.</p>
         </div>
@@ -43,9 +56,8 @@
       </div>
 
       <div class="row-fluid">
-        <div class="span6">
+        <div id="addTarget" class="span6">
           <p class="lead"><img src="img/add.png">Add an element to div</p>
-          <p>Shift + A: Add the clicked element to a specified class.</p>
         </div>
         <div class="span6">
           <p class="lead"><img src="img/compose-2.png">Change tagName</p>

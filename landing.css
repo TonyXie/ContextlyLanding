@@ -4,13 +4,65 @@
   top: 240px;
 }
 
+#quillButton {
+  padding-right: 3em;
+}
+
+#opaque {
+  opacity: 0;
+}
+
+#absolute {
+  position: absolute;
+  left: 100px;
+  top: 300px;
+}
+
+#absolute p {
+  font-family: "PT Sans Narrow";
+  font-size: 18px;
+}
+
+#absolute p.lead {
+  font-family: "Oswald";
+  font-size: 25px;
+  margin-bottom: 7px;
+}
+
+.hero-unit {
+  background-color: #FF7373;
+}
+
 img {
-  margin-right: 5px;
+  margin-right: 8px;
+}
+
+.row-fluid {
+  margin-bottom: 15px;
+}
+
+#addObject {
+  position: absolute;
+  left: 420px;
+  top: 340px;
+  font-family: "PT Sans Narrow";
+  font-size: 18px;
+}
+
+.row-fluid p {
+  font-family: "PT Sans Narrow";
+  font-size: 18px;
+}
+
+.row-fluid p.lead {
+  font-family: "Oswald";
+  font-size: 25px;
+  margin-bottom: 7px;
 }
 
 .jumbotron{
-  height: 312px;
-  margin-top: 5em;
+  height: 100px;
+  padding-top: 5em;
   border-bottom: 1px solid black;
   margin-bottom: 2em;
   text-align: center;
@@ -25,12 +77,14 @@ tr {
 }
 
 .jumbotron h1 {
-  font-family: Raleway;
+  font-family: 'Open Sans';
   font-size: 150px;
+  letter-spacing: 3px;
 }
 
 .jumbotron h2 {  
   margin-top: 84px;
+  font-family: 'Raleway'
 }
 
 .jumbotron a {
