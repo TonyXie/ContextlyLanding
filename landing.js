@@ -151,7 +151,7 @@
       }, 1500, "linear", function() {
         flashInOut("draggableFlash");
         $('#addObject').animate({
-          "left": "114px",
+          "left": "174px",
           "top": "644px"
         }, 1500, "linear");
         return $("#quill").animate({
@@ -161,7 +161,6 @@
           return $('#quill').animate({
             "top": "323px"
           }, 1500, "linear", function() {
-            flashInOut("changeFontFlash");
             flashInOut("draggableFlash");
             $('#absolute').animate({
               "top": "410px"
@@ -170,8 +169,8 @@
               "top": "410px"
             }, 1500, "linear", function() {
               return $('#quill').animate({
-                "left": "640px",
-                "top": "300px"
+                "left": "690px",
+                "top": "305px"
               }, 1500);
             });
           });

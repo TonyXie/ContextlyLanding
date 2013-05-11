@@ -157,15 +157,14 @@ $(document).ready ->
       $("#quill").animate {"top": "351px"}, 1500, "linear"
     $("#quill").animate {"top": "310px"}, 1500, "linear", ->
       flashInOut("draggableFlash")
-      $('#addObject').animate {"left" : "114px", "top" : "644px"}, 1500, "linear"
+      $('#addObject').animate {"left" : "174px", "top" : "644px"}, 1500, "linear"
       $("#quill").animate {"left" : "220px", "top" : "624px"}, 1500, "linear", ->
 
         $('#quill').animate {"top": "323px"}, 1500, "linear", ->
-          flashInOut("changeFontFlash")
           flashInOut("draggableFlash")
           $('#absolute').animate {"top": "410px"}, 1500, "linear"
           $('#quill').animate {"top": "410px"}, 1500, "linear", ->
-            $('#quill').animate {"left" : "640px", "top" : "300px"}, 1500          
+            $('#quill').animate {"left" : "690px", "top" : "305px"}, 1500          
 
   
 

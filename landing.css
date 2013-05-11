@@ -14,7 +14,7 @@
 
 #absolute {
   position: absolute;
-  left: 100px;
+  left: 152px;
   top: 300px;
 }
 
@@ -37,7 +37,7 @@ img {
   margin-right: 8px;
 }
 
-.row-fluid {
+.row {
   margin-bottom: 15px;
 }
 
@@ -49,12 +49,12 @@ img {
   font-size: 18px;
 }
 
-.row-fluid p {
+.row p {
   font-family: "PT Sans Narrow";
   font-size: 18px;
 }
 
-.row-fluid p.lead {
+.row p.lead {
   font-family: "Oswald";
   font-size: 25px;
   margin-bottom: 7px;
