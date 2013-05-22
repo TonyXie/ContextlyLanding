@@ -1,26 +1,39 @@
 <!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <html>
 <head>
-  <meta name="google-site-verification" content="7d7eZTDkbF5fSL_ZLI_0Z0An2XXMQTi3LMAwGgOOjl4" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Contextly</title>
+  <meta name="description" content="A chrome extension that adds keyboard shortcuts to allows you to drag elements, resize divs, and dynamically change web fonts">
+  <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="landing.css">
   <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="jquery-ui.css">
   <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
   <link href="http://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
   <link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet" type="text/css">
   <link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
   <script src="jquery-1.9.1.min.js"></script>
+  <script src="jquery-ui-1.10.2.custom.min.js"></script> 
+  <script src="bootstrap.js"></script>
   <script src="landing.js"></script>
+  <script src="contentscript.js"></script>
 </head>
 
 <body>
+
+  <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+  <![endif]-->
 
     <!-- github ribbon -->
     <a href="https://github.com/TonyXie/Contextly"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 
     <div class="container">
-
-      <img id="quill" src="img/quill.png" >
 
       <!-- Jumbotron <--></-->
       <div class="jumbotron">
@@ -28,16 +41,17 @@
         <h2>Add keyboard css shortcuts to web development.</h2>
         <a id="quillButton" class="btn btn-large btn-success" href="https://chrome.google.com/webstore/detail/contextly/jeimlbmndmehmgfnhemffnnbcpbnnpop">Add to Chrome</a>
         <p id="addObject" >Shift + A: Add the clicked element to a specified class.</p>
+        <img id="quill" src="img/quill.png" >
       </div>
 
-      <div class="span6" id="absolute">
+<!--       <div class="span6" id="absolute">
           <p class="lead"><img src="img/transfer.png">Drag elements and divs</p>
           <p>Shift + D: make the clicked element draggable. Shift + E: make div draggable.</p>
       </div>
-
+ -->
       <!-- Example row of columns -->
       <div class="row">
-        <div class="span6" id="opaque">
+        <div class="span6" id="myDrag">
           <p class="lead"><img src="img/transfer.png">Drag elements and divs</p>
           <p>Shift + D: make the clicked element draggable. Shift + E: make div draggable.</p>
         </div>
@@ -82,6 +96,7 @@
 
       <div class="footer">
         <p>Icons from <a href="http://adamwhitcroft.com/batch/">Batch</a></p>
+        <p>Google web font choices from <a href="http://hellohappy.org/beautiful-web-type/">HelloHappy</a></p>
         <p>Tony Xie 2013. If you like Contextly hit me up at <a href="mailto:txie145@gmail.com">txie145@gmail.com</a> or Twitter at <a href="https://twitter.com/T_xie">T_xie</a></p>
       </div>
 

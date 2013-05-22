@@ -7,6 +7,18 @@
     <div id="contextlyFlashesHolder"></div>\
     ');
     $('#contextlyFlashesHolder').prepend('\
+     <div id="ContextlyLoadedFlash" class="hide alert alert-success" style="\
+    z-index: 10000000;\
+    position: fixed;\
+    left: 41%;\
+    top: 2%;\
+    width: 200px;\
+      ">\
+      <a class="close" id= "closeMyFlash" href="#">×</a>\
+      <p>Contextly Loaded into page. Press shift + H to begin.</p>\
+    </div>\
+    ');
+    $('#contextlyFlashesHolder').prepend('\
      <div id="draggableFlash" class="hide alert alert-success" style="\
     z-index: 10000000;\
     position: fixed;\
@@ -123,59 +135,48 @@
         return callback();
       }
     };
-    $("reload").click(function(e) {
-      return document.location.reload(true);
-    });
     $("#quill").animate({
-      "left": "580px",
-      "top": "55px"
+      "left": "-30px",
+      "top": "-280px"
     }, 1500, "linear", function() {
       flashInOut("changeFontFlash");
       $('.jumbotron h3').css("font-size", "150px");
       return $('.jumbotron h3').css("font-family", "Open Sans");
     });
-    return $("#quill").animate({
-      "left": "580px",
-      "top": "140px"
+    $("#quill").animate({
+      "left": "-27px",
+      "top": "-232px"
     }, 1500, "linear", function() {
       flashInOut("resizableFlash", function() {
         $(".jumbotron").animate({
           "height": "312px"
         }, 1500, "linear");
         return $("#quill").animate({
-          "top": "351px"
+          "top": "-20px"
         }, 1500, "linear");
       });
       return $("#quill").animate({
-        "top": "310px"
+        "top": "-55px"
       }, 1500, "linear", function() {
+        flashInOut("addToClassFlash");
+        $('#addTarget').append('<p>Shift + A: Add the clicked element to a specified class.</p>');
+        $('#addObject').css("opacity", "0");
+        $('#quill').animate({
+          "left": "75px",
+          "top": "-70px"
+        }, 1500, "linear", function() {});
         flashInOut("draggableFlash");
-        $('#addObject').animate({
-          "left": "174px",
-          "top": "644px"
-        }, 1500, "linear");
-        return $("#quill").animate({
-          "left": "220px",
-          "top": "624px"
+        return $('#myDrag').animate({
+          "left": "0px"
         }, 1500, "linear", function() {
-          return $('#quill').animate({
-            "top": "323px"
-          }, 1500, "linear", function() {
-            flashInOut("draggableFlash");
-            $('#absolute').animate({
-              "top": "410px"
-            }, 1500, "linear");
-            return $('#quill').animate({
-              "top": "410px"
-            }, 1500, "linear", function() {
-              return $('#quill').animate({
-                "left": "690px",
-                "top": "305px"
-              }, 1500);
-            });
-          });
+          return $('#ContextlyLoadedFlash').fadeIn();
         });
       });
+    });
+    return $(document).bind('keypress', function(e) {
+      if (event.shiftKey && event.which === 72) {
+        return $('#ContextlyLoadedFlash').fadeOut();
+      }
     });
   });
 
