@@ -121,284 +121,155 @@
   commandList = new LinkedList;
 
   $(document).ready(function() {
-    var modalDown;
+    var allFlashes, allModals, flash, flashList, flashTemplate1, flashTemplate2, flashTemplate3, modal, modalDown, modalList, modalTemplate1, modalTemplate2, modalTemplate3, modalTemplate4, modalTemplate5, _i, _j, _len, _len1;
     $('body').append('\
     <div id="ContextlyFlashesHolder"></div>\
     ');
-    $('#ContextlyFlashesHolder').prepend('\
-     <div id="draggableFlash" class="hide alert alert-success" style="\
-    z-index: 10000000;\
-    position: fixed;\
-    left: 41%;\
-    top: 2%;\
-    width: 200px;\
-      ">\
-      <a class="close" id= "closeMyFlash" href="#">×</a>\
-      <p>Element made draggable</p>\
-    </div>\
-    ');
-    $('#ContextlyFlashesHolder').prepend('\
-     <div id="changeFontFlash" class="hide alert alert-success" style="\
-    z-index: 10000000;\
-    position: fixed;\
-    left: 41%;\
-    top: 2%;\
-    width: 200px;\
-      ">\
-      <a class="close" id= "closeMyFlash" href="#">×</a>\
-      <p>Font changed</p>\
-    </div>\
-    ');
-    $('#ContextlyFlashesHolder').prepend('\
-     <div id="wrapClassFlash" class="hide alert alert-success" style="\
-    z-index: 10000000;\
-    position: fixed;\
-    left: 41%;\
-    top: 2%;\
-    width: 230px;\
-      ">\
-      <a class="close" id= "closeMyFlash" href="#">×</a>\
-      <p>Element wrapped in specified div</p>\
-    </div>\
-    ');
-    $('#ContextlyFlashesHolder').prepend('\
-     <div id="addToClassFlash" class="hide alert alert-success" style="\
-    z-index: 10000000;\
-    position: fixed;\
-    left: 41%;\
-    top: 2%;\
-    width: 230px;\
-      ">\
-      <a class="close" id= "closeMyFlash" href="#">×</a>\
-      <p>Element added to specified div</p>\
-    </div>\
-    ');
-    $('#ContextlyFlashesHolder').prepend('\
-     <div id="changeTagNameFlash" class="hide alert alert-success" style="\
-    z-index: 10000000;\
-    position: fixed;\
-    left: 41%;\
-    top: 2%;\
-    width: 200px;\
-      ">\
-      <a class="close" id= "closeMyFlash" href="#">×</a>\
-      <p>Element\'s tagName changed</p>\
-    </div>\
-    ');
-    $('#ContextlyFlashesHolder').prepend('\
-     <div id="modifyClassFlash" class="hide alert alert-success" style="\
-    z-index: 10000000;\
-    position: fixed;\
-    left: 41%;\
-    top: 2%;\
-    width: 200px;\
-      ">\
-      <a class="close" id= "closeMyFlash" href="#">×</a>\
-      <p>Class changed</p>\
-    </div>\
-    ');
-    $('#ContextlyFlashesHolder').prepend('\
-     <div id="resizableFlash" class="hide alert alert-success" style="\
-    z-index: 10000000;\
-    position: fixed;\
-    left: 41%;\
-    top: 2%;\
-    width: 200px;\
-      ">\
-      <a class="close" id= "closeMyFlash" href="#">×</a>\
-      <p>Element made resizable</p>\
-    </div>\
-    ');
-    $('#ContextlyFlashesHolder').prepend('\
-     <div id="revertFlash" class="hide alert alert-success" style="\
-    z-index: 10000000;\
-    position: fixed;\
-    left: 41%;\
-    top: 2%;\
-    width: 200px;\
-      ">\
-      <a class="close" id= "closeMyFlash" href="#">×</a>\
-      <p>Change reverted</p>\
-    </div>\
-    ');
-    $('#ContextlyFlashesHolder').prepend('\
-     <div id="failRevertFlash" class="hide alert alert-error" style="\
-    z-index: 10000000;\
-    position: fixed;\
-    left: 41%;\
-    top: 2%;\
-    width: 200px;\
-      ">\
-      <a class="close" id= "closeMyFlash" href="#">×</a>\
-      <p>No changes to revert</p>\
-    </div>\
-    ');
+    flashTemplate1 = "<div id=";
+    flashTemplate2 = " class='hide alert alert-success' style='    z-index: 10000000;    position: fixed;    left: 41%;    top: 2%;    width: 200px;    text-align: center;      '>      <a class='close' id= 'closeMyFlash' href='#'>×</a>";
+    flashTemplate3 = "</div>";
+    flashList = [
+      {
+        flashName: "draggableFlash",
+        message: "<p>Element made draggable</p>"
+      }, {
+        flashName: "changeFontFlash",
+        message: "<p>Font changed</p>"
+      }, {
+        flashName: "wrapClassFlash",
+        message: "<p>Element wrapped in specified div</p>"
+      }, {
+        flashName: "addToClassFlash",
+        message: "<p>Element added to specified div</p>"
+      }, {
+        flashName: "changeTagNameFlash",
+        message: "<p>Element\'s tagName changed</p>"
+      }, {
+        flashName: "modifyClassFlash",
+        message: "<p>Class changed</p>"
+      }, {
+        flashName: "resizableFlash",
+        message: "<p>Element made resizable</p>"
+      }, {
+        flashName: "revertFlash",
+        message: "<p>Change reverted</p>"
+      }, {
+        flashName: "failRevertFlash",
+        message: "<p>No changes to revert</p>"
+      }
+    ];
+    allFlashes = (function() {
+      var _i, _len, _results;
+      _results = [];
+      for (_i = 0, _len = flashList.length; _i < _len; _i++) {
+        flash = flashList[_i];
+        _results.push(flashTemplate1 + flash.flashName + flashTemplate2 + flash.message + flashTemplate3);
+      }
+      return _results;
+    })();
+    for (_i = 0, _len = allFlashes.length; _i < _len; _i++) {
+      flash = allFlashes[_i];
+      $('#ContextlyFlashesHolder').append(flash);
+    }
     $('body').append('\
     <div id="ContextlyModalsHolder"></div>\
     ');
-    $('#ContextlyModalsHolder').append('\
-      <!-- Modal -->\
-      <div id="fontModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\
-        <div class="modal-header">\
-          <h3 id="myModalLabel">Change font</h3>\
-        </div>\
-        <div class="modal-body">\
-          <select name="font-list" id="font-list">\
-            <option value="Helvetica">Helvetica</option>\
-            <option value="Raleway">Raleway</option>\
-            <option value="Gabriela"> Gabriela </option>\
-            <option value="Abril+Fatface">Abril Fatface</option>\
-            <option value="Gentium+Book+Basic">Gentium Book Basic</option>\
-            <option value="Gravitas+One">Gravitas One</option>\
-            <option value="Lato">Lato</option>\
-            <option value="Merriweather">Merriweather</option>\
-            <option value="Old+Standard+TT">Old Standard TT</option>\
-            <option value="Open+Sans">Open Sans</option>\
-            <option value="Oswald">Oswald</option>\
-            <option value="Playfair+Display">Playfair Display</option>\
-            <option value="PT+Sans">PT Sans</option>\
-            <option value="PT+Mono">PT Mono</option>\
-            <option value="PT+Sans+Narrow">PT Sans Narrow</option>\
-            <option value="PT+Serif">PT Serif</option>\
-            <option value="Vollkorn">Vollkorn</option>\
-            <option value="Abel">Abel</option>\
-          </select>\
-        <textarea name="Tony" id="changeFontSize" style="width: 280px"cols="1" rows="1">Current font size:</textarea>\
-        <textarea name="Tony" id="changeFontStyle" style="width: 280px"cols="1" rows="1">Current font-style:</textarea>\
-        <textarea name="Tony" id="changeFontWeight" style="width: 280px"cols="1" rows="1">Current font-weight:</textarea>\
-        <b style="font-size: 20px">R</b><input style="width: 50px" id="fontColorR">\
-        <b style="font-size: 20px">G</b><input style="width: 50px" id="fontColorG">\
-        <b style="font-size: 20px">B</b><input style="width: 50px" id="fontColorB">\
-        </div>\
-        <div class="modal-footer">\
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>\
-          <button id="fontChange" class="btn btn-primary" data-dismiss="modal">Save changes</button>\
-        </div>\
-      </div>  \
-    ');
-    $('#ContextlyModalsHolder').append('\
-      <!-- Modal -->\
-      <div id="helpModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\
-        <div class="modal-header">\
-          <h3 id="myModalLabel">Help Menu</h3>\
-        </div>\
-        <div class="modal-body">\
-          <p> Click elements to select them! Contextly only works on localhost or file:/// urls </p>\
-          <p>Help menu: Shift + H</p>\
-          <p>Change font-styles: Shift + F</p>\
-          <p>Wrap element with class: Shift + W</p>\
-          <p>Change tagName: Shift + T</p>\
-          <p>Make element draggable: Shift + D</p>\
-          <p>Make class draggable: Shift + E</p>\
-          <p>Add element to existing div: Shift + A</p>\
-          <p>Choose element to make resizable: Shift + R</p>\
-          <p>Modify existing class: Shift + M</p>\
-          <p>Undo last change: Shift + Z</p>\
-        </div>\
-        <div class="modal-footer">\
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>\
-        </div>\
-      </div>  \
-    ');
-    $('#ContextlyModalsHolder').append('\
-      <!-- Modal -->\
-      <div id="wrapElementModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\
-        <div class="modal-header">\
-          <h3 id="myModalLabel">Wrap Element Menu</h3>\
-        </div>\
-        <div class="modal-body">\
-          <b style="font-size: 50px">.</b><textarea name="Tony" id="wrapElememtArea" cols="1" rows="1">Wrap element class:</textarea>\
-        </div>\
-        <div class="modal-footer">\
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>\
-          <button id="wrapElement" class="btn btn-primary" data-dismiss="modal" >Save changes</button>\
-        </div>\
-      </div>  \
-    ');
-    $('#ContextlyModalsHolder').append('\
-    <!-- Modal -->\
-    <div id="makeClassDraggable" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\
-      <div class="modal-header">\
-        <h3 id="myModalLabel">Make class draggable</h3>\
-      </div>\
-      <div class="modal-body">\
-        <b style="font-size: 50px">.</b><textarea name="Tony" id="draggableClassArea" cols="1" rows="1">Make class draggable:</textarea>\
-        <b style="font-size: 30px">#</b><textarea name="Tony" id="draggableIdArea" cols="1" rows="1">Choose id to add element to:</textarea>\
-      </div>\
-      <div class="modal-footer">\
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>\
-        <button id="makeClassDraggableSubmit" class="btn btn-primary" data-dismiss="modal" >Save changes</button>\
-      </div>\
-    </div>  \
-  ');
-    $('#ContextlyModalsHolder').append('\
-      <!-- Modal -->\
-      <div id="changeTagNameModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\
-        <div class="modal-header">\
-          <h3 id="myModalLabel">Change tagName</h3>\
-        </div>\
-        <div class="modal-body">\
-          <textarea name="Tony" id="changeTagNameArea" cols="1" rows="1">change tagName to:</textarea>\
-        </div>\
-        <div class="modal-footer">\
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>\
-          <button id="changeTagNameSubmit" class="btn btn-primary" data-dismiss="modal" >Save changes</button>\
-        </div>\
-      </div>  \
-    ');
-    $('#ContextlyModalsHolder').append('\
-      <!-- Modal -->\
-      <div id="addElementToDivModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\
-        <div class="modal-header">\
-          <h3 id="myModalLabel">Add Element to Existing Div</h3>\
-        </div>\
-        <div class="modal-body">\
+    modalTemplate1 = "<div id=";
+    modalTemplate2 = ' class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><div class="modal-header"><h3 id="myModalLabel">';
+    modalTemplate3 = '</h3></div><div class="modal-body">';
+    modalTemplate4 = '</div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Close</button><button id="';
+    modalTemplate5 = '" class="btn btn-primary" data-dismiss="modal">Save changes</button></div></div>';
+    modalList = [
+      {
+        id: "fontModal",
+        title: "Change font",
+        body: '<select name="font-list" id="font-list">\
+          <option value="Helvetica">Helvetica</option>\
+          <option value="Raleway">Raleway</option>\
+          <option value="Gabriela"> Gabriela </option>\
+          <option value="Abril+Fatface">Abril Fatface</option>\
+          <option value="Gentium+Book+Basic">Gentium Book Basic</option>\
+          <option value="Gravitas+One">Gravitas One</option>\
+          <option value="Lato">Lato</option>\
+          <option value="Merriweather">Merriweather</option>\
+          <option value="Old+Standard+TT">Old Standard TT</option>\
+          <option value="Open+Sans">Open Sans</option>\
+          <option value="Oswald">Oswald</option>\
+          <option value="Playfair+Display">Playfair Display</option>\
+          <option value="PT+Sans">PT Sans</option>\
+          <option value="PT+Mono">PT Mono</option>\
+          <option value="PT+Sans+Narrow">PT Sans Narrow</option>\
+          <option value="PT+Serif">PT Serif</option>\
+          <option value="Vollkorn">Vollkorn</option>\
+          <option value="Abel">Abel</option>\
+        </select>\
+      <textarea name="Tony" id="changeFontSize" style="width: 280px"cols="1" rows="1">Current font size:</textarea>\
+      <textarea name="Tony" id="changeFontStyle" style="width: 280px"cols="1" rows="1">Current font-style:</textarea>\
+      <textarea name="Tony" id="changeFontWeight" style="width: 280px"cols="1" rows="1">Current font-weight:</textarea>\
+      <b style="font-size: 20px">R</b><input style="width: 50px" id="fontColorR">\
+      <b style="font-size: 20px">G</b><input style="width: 50px" id="fontColorG">\
+      <b style="font-size: 20px">B</b><input style="width: 50px" id="fontColorB">',
+        submitId: "fontChange"
+      }, {
+        id: "helpModal",
+        title: "Help Menu",
+        body: "<p> Click elements to select them! Contextly only works on localhost or file:/// urls </p>          <p>Help menu: Shift + H</p>          <p>Change font-styles: Shift + F</p>          <p>Wrap element with class: Shift + W</p>          <p>Change tagName: Shift + T</p>          <p>Make element draggable: Shift + D</p>          <p>Make class draggable: Shift + E</p>          <p>Add element to existing div: Shift + A</p>          <p>Choose element to make resizable: Shift + R</p>          <p>Modify existing class: Shift + M</p>          <p>Undo last change: Shift + Z</p>",
+        submitId: ""
+      }, {
+        id: "wrapElementModal",
+        title: "Wrap Element Menu",
+        body: '<b style="font-size: 50px">.</b><textarea name="Tony" id="wrapElememtArea" cols="1" rows="1">Wrap element class:</textarea>',
+        submitId: "wrapElement"
+      }, {
+        id: "makeClassDraggable",
+        title: "Make class draggable",
+        body: '<b style="font-size: 50px">.</b><textarea name="Tony" id="draggableClassArea" cols="1" rows="1">Make class draggable:</textarea>\
+        <b style="font-size: 30px">#</b><textarea name="Tony" id="draggableIdArea" cols="1" rows="1">Choose id to make draggable:</textarea>',
+        submitId: "makeClassDraggableSubmit"
+      }, {
+        id: "changeTagNameModal",
+        title: "Change tagName",
+        body: '<textarea name="Tony" id="changeTagNameArea" cols="1" rows="1">change tagName to:</textarea>',
+        submitId: "changeTagNameSubmit"
+      }, {
+        id: "addElementToDivModal",
+        title: "Add Element to Existing Div",
+        body: '<div class="modal-body">\
           <b style="font-size: 50px">.</b><textarea name="Tony" id="addElementToDivArea" cols="1" rows="1">Choose class to add element to:</textarea>\
-          <b style="font-size: 30px">#</b><textarea name="Tony" id="addElementToIdArea" cols="1" rows="1">Choose id to add element to:</textarea>\
-        </div>\
-        <div class="modal-footer">\
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>\
-          <button id="addElementToDiv" class="btn btn-primary" data-dismiss="modal" >Save changes</button>\
-        </div>\
-      </div>  \
-    ');
-    $('#ContextlyModalsHolder').append('\
-      <!-- Modal -->\
-      <div id="resizableModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\
-        <div class="modal-header">\
-          <h3 id="myModalLabel">Make Div Resizable</h3>\
-        </div>\
-        <div class="modal-body">\
-          <b style="font-size: 50px">.</b><textarea name="Tony" id="resizableClassArea" cols="1" rows="1">Choose class to make resizable:</textarea>\
-          <b style="font-size: 30px">#</b><textarea name="Tony" id="resizableIdDivArea" cols="1" rows="1">Choose id to add element to:</textarea>\
-        </div>\
-        <div class="modal-footer">\
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>\
-          <button id="makeResizable" class="btn btn-primary" data-dismiss="modal" >Save changes</button>\
-        </div>\
-      </div>  \
-    ');
-    $('#ContextlyModalsHolder').append('\
-      <!-- Modal -->\
-      <div id="modifyClassModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\
-        <div class="modal-header">\
-          <h3 id="myModalLabel">Change class things</h3>\
-        </div>\
-        <div class="modal-body">\
-          <b style="font-size: 50px">.</b><textarea name="Tony" id="modifyClassArea" cols="1" rows="1">Choose class</textarea>\
+          <b style="font-size: 30px">#</b><textarea name="Tony" id="addElementToIdArea" cols="1" rows="1">Choose id to add element to:</textarea>',
+        submitId: "addElementToDiv"
+      }, {
+        id: "resizableModal",
+        title: "Make Div Resizable",
+        body: '<b style="font-size: 50px">.</b><textarea name="Tony" id="resizableClassArea" cols="1" rows="1">Choose class to make resizable:</textarea>\
+          <b style="font-size: 30px">#</b><textarea name="Tony" id="resizableIdDivArea" cols="1" rows="1">Choose id to make resizable:</textarea>',
+        submitId: "makeResizable"
+      }, {
+        id: "modifyClassModal",
+        title: "Change class attributes",
+        body: '<b style="font-size: 50px">.</b><textarea name="Tony" id="modifyClassArea" cols="1" rows="1">Choose class</textarea>\
             <textarea name="Tony" id="modifyClassBackgroundColor" cols="1" rows="1">Background color?</textarea>\
             <textarea name="Tony" id="modifyClassAreaHeight" cols="1" rows="1">Height</textarea>\
-            <textarea name="Tony" id="modifyClassAreaWidth" cols="1" rows="1">Width</textarea>\
-        </div>\
-        <div class="modal-footer">\
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>\
-          <button id="modifyClass" class="btn btn-primary" data-dismiss="modal" >Save changes</button>\
-        </div>\
-      </div>  \
-    ');
+            <textarea name="Tony" id="modifyClassAreaWidth" cols="1" rows="1">Width</textarea>',
+        submitId: "modifyClass"
+      }
+    ];
+    allModals = (function() {
+      var _j, _len1, _results;
+      _results = [];
+      for (_j = 0, _len1 = modalList.length; _j < _len1; _j++) {
+        modal = modalList[_j];
+        _results.push(modalTemplate1 + modal.id + modalTemplate2 + modal.title + modalTemplate3 + modal.body + modalTemplate4 + modal.submitId + modalTemplate5);
+      }
+      return _results;
+    })();
+    for (_j = 0, _len1 = allModals.length; _j < _len1; _j++) {
+      modal = allModals[_j];
+      $('#ContextlyModalsHolder').append(modal);
+    }
     modalDown = false;
     $(document).bind('keypress', function(e) {
-      var action, classToAdd, classToAddLastChild, color, content, currFontSize, currTagName, details, element, fontStyle, fontWeight, index, method, parent, tagName;
+      var action, classToAdd, classToAddLastChild, color, content, currFontSize, currTagName, details, element, fontStyle, fontWeight, height, index, method, parent, tagName, width;
       if (event.shiftKey && event.which === 72) {
         $("#helpModal").modal();
       }
@@ -492,11 +363,19 @@
             $(element).css("font-style", details.fontStyle);
             return $(element).css("font-weight", details.fontWeight);
           } else if (method === "resizable") {
-            $(element).animate({
-              "height": "" + details.height,
-              "width": "" + details.width
+            height = details.height;
+            width = details.width;
+            $(element).tooltip('destroy');
+            return $(element).animate({
+              "height": "" + height,
+              "width": "" + width
+            }, 250, "linear", function() {
+              return $(element).tooltip({
+                placement: 'bottom',
+                trigger: 'manual',
+                title: "new height: " + height + ", new width: " + width
+              }).tooltip('show');
             });
-            return $(element).tooltip('destroy');
           } else if (method === "draggable" || "classDraggable") {
             $(element).animate({
               "top": "0px",
@@ -666,7 +545,6 @@
     });
     return $('body').on("click", "h1, h2, h3, p, a, li, img", function(e) {
       var x;
-      e.preventDefault();
       x = $(this);
       $('.clicked').css('background-color', '');
       $('.clicked').removeClass('clicked');
